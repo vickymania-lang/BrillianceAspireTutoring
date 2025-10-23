@@ -83,7 +83,7 @@ export function Hero() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
 
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-10 md:py-32 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Carousel
           plugins={[plugin.current]}
@@ -109,17 +109,11 @@ export function Hero() {
                     <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">{slide.description}</p>
 
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 group">
-                        Contact Us
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                      <Button
-                        size="lg"
-                        variant="outline"
-                        className="border-primary text-primary hover:bg-primary/10 bg-transparent"
-                      >
-                        Learn More
-                      </Button>
+                      <div className="bg-primary text-primary-foreground hover:bg-primary/90 group">
+                         All sessions are scheduled in your local time zone to make learning convenient wherever you are in the world
+                      
+                      </div>
+                     
                     </div>
 
                     <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">

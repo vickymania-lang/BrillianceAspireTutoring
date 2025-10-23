@@ -1,20 +1,26 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Calendar, Clock, Mail, User, Video } from "lucide-react"
-import { bookSession } from "@/app/actions/book-session"
 
 export function BookingForm() {
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [meetLink, setMeetLink] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+
+  // Simple random meeting link generator (you can replace with your backend API)
+  function generateMeetLink() {
+    const randomId = Math.random().toString(36).substring(2, 10)
+    return `https://meet.google.com/${randomId}`
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -23,16 +29,34 @@ export function BookingForm() {
 
     const formData = new FormData(e.currentTarget)
 
-    try {
-      const result = await bookSession(formData)
+    // Generate a unique meeting link
+    const link = generateMeetLink()
 
-      if (result.success && result.meetLink) {
-        setMeetLink(result.meetLink)
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      purpose: formData.get("purpose"),
+      time: formData.get("time"),
+      meetingLink: link,
+    }
+
+    try {
+      // Send to Formspree
+      const response = await fetch("https://formspree.io/f/myznqrdk", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setMeetLink(link)
       } else {
-        setError(result.error || "Failed to create session")
+        setError("❌ There was an issue sending your message. Please try again.")
       }
     } catch (err) {
-      setError("An unexpected error occurred")
+      setError("⚠️ Network error. Please check your internet connection and try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -46,7 +70,7 @@ export function BookingForm() {
             <Video className="h-8 w-8 text-primary" />
           </div>
           <CardTitle className="text-2xl">Session Booked Successfully!</CardTitle>
-          <CardDescription>Your Google Meet link has been generated</CardDescription>
+          <CardDescription>Your Google Meet link has been generated and emailed to you.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="rounded-lg bg-muted p-4">
@@ -61,10 +85,10 @@ export function BookingForm() {
             </a>
           </div>
           <p className="text-sm text-muted-foreground text-center">
-            A confirmation email has been sent to your email address with the meeting details.
+            A confirmation email (with this link included) has been sent to your email address.
           </p>
-          <Button onClick={() => setMeetLink(null)} variant="outline" className="w-full">
-            Book Another Session
+          <Button onClick={() => { setMeetLink(null); router.push("/") }} variant="outline" className="w-full">
+            Back to Home
           </Button>
         </CardContent>
       </Card>

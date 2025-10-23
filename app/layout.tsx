@@ -3,6 +3,8 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import WhatsAppButton from '@/components/whatsapp-button'
+
 
 export const metadata: Metadata = {
   title: "Brilliance Aspire Tutoring | Online Learning for Academic Success",
@@ -33,7 +35,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         {children}
+        <WhatsAppButton />
         <Analytics />
+     
       </body>
     </html>
   )
