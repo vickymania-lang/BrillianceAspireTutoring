@@ -1,14 +1,16 @@
 "use client"
 
 import type React from "react"
-
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MessageSquare, Phone, Mail } from "lucide-react"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function Consultation() {
+  const router = useRouter()
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,10 +19,40 @@ export function Consultation() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Handle form submission
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("https://formspree.io/f/myznqrdk", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          FirstName: formData.firstName,
+          LastName: formData.lastName,
+          Email: formData.email,
+          Phone: formData.phone,
+          Message: formData.message,
+        }),
+      })
+
+      if (response.ok) {
+        alert("✅ Message sent successfully! Redirecting to home page...")
+        setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" })
+        router.push("/") // redirect to homepage
+      } else {
+        alert("❌ There was an issue sending your message. Please try again.")
+      }
+    } catch (error) {
+      console.error(error)
+      alert("⚠️ Network error. Please check your connection and try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -28,7 +60,9 @@ export function Consultation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Ready to Get Started?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+              Ready to Get Started?
+            </h2>
             <p className="text-lg text-muted-foreground">
               Schedule a free learning consultation today. Let's discuss how we can help your child excel.
             </p>
@@ -51,7 +85,7 @@ export function Consultation() {
                   </div>
                   <div>
                     <div className="font-medium text-foreground">Phone</div>
-                    <div className="text-muted-foreground">+2348163688635</div>
+                    <div className="text-muted-foreground">+234 816 368 8635</div>
                   </div>
                 </div>
 
@@ -61,7 +95,9 @@ export function Consultation() {
                   </div>
                   <div>
                     <div className="font-medium text-foreground">Email</div>
-                    <div className="text-muted-foreground">brillianceaspiretutoring.com</div>
+                    <div className="text-muted-foreground">
+                      brillianceaspiretutoring@gmail.com
+                    </div>
                   </div>
                 </div>
 
@@ -71,13 +107,19 @@ export function Consultation() {
                   </div>
                   <div>
                     <div className="font-medium text-foreground">Address</div>
-                    <div className="text-muted-foreground">Plot VI, Block 5 Omololu Olunloyo Estate. Ring-Road Nigeria</div>
+                    <div className="text-muted-foreground">
+                      Plot VI, Block 5 Omololu Olunloyo Estate. Ring-Road Nigeria
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="bg-card p-8 rounded-2xl border border-border shadow-sm space-y-6">
+            {/* Contact Form */}
+            <form
+              onSubmit={handleSubmit}
+              className="bg-card p-8 rounded-2xl border border-border shadow-sm space-y-6"
+            >
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="firstName" className="text-sm font-medium text-foreground">
@@ -146,8 +188,12 @@ export function Consultation() {
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                Send
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                {isSubmitting ? "Sending..." : "Send"}
               </Button>
             </form>
           </div>

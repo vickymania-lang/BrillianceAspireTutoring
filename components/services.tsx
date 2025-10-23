@@ -17,7 +17,15 @@ const services = [
   {
     icon: GraduationCap,
     title: "Exam Preparation",
-    description: "Expert preparation for SAT, ACT, BECE, IGCSE, Checkpoint, WASSCE, JAMB, and Post-UTME examinations.",
+    description: `IGCSE, O-Level, AS & A-Level,
+                  
+                  SAT, ACT, and AP Exams 
+                  
+                  Edexcel GCSE & A-Level 
+                  
+                  IB (International Baccalaureate) 
+                  
+                  WASSCE, BECE, JAMB, and other regional assessments`,
   },
   {
     icon: Heart,
