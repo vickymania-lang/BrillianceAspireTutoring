@@ -28,6 +28,12 @@ With learners across multiple countries and time zones, we provide flexible sche
                 alt="CEO of Brilliance Aspire Tutoring"
                 className=" w-auto object-contain"
               />
+              <p className="text-justify text-muted-foreground leading-relaxed">
+               <b>Meet Catherine - Founder, Tutor & Learning Coach
+               </b><br></br>
+               I specialize in helping students from preschool to secondary school build strong academic foundations. Through personalized teaching and patience, i guide learners to understand deeply, grow confidently, achieve consistent progress.<br></br>Every child has the ability to shine, they just need the right support.
+  
+               </p>
           </div>
         </div>
 

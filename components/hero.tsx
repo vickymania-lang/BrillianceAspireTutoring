@@ -8,8 +8,8 @@ import { useRef } from "react"
 
 const heroSlides = [
   {
-    badge: "🎓 Briliance Aspire Tutoring",
-    title: "Briliance Aspire Tutoring",
+    badge: "🎓 Brilliance Aspire Tutoring",
+    title: "Brilliance Aspire Tutoring",
     description:
       "Empowering Minds, Inspiring Success Personalized online tutoring that helps every learner reach their full potential. Master subjects, build confidence, and achieve academic excellence with expert guidance.[Start Learning Today]",
     image: "/b3.jpg",
