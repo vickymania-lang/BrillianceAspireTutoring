@@ -99,7 +99,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/80">
-          <p>&copy; {new Date().getFullYear()} Brilliance Aspire  Tutoring. All rights reserved. Design by Ogungbuyi victor</p>
+          <p>&copy; {new Date().getFullYear()} Brilliance Aspire  Tutoring. All rights reserved. Design by <a href="https://wa.me/+2348145080787">Ogungbuyi victor</a></p>
         </div>
       </div>
     </footer>
