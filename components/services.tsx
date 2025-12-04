@@ -6,7 +6,7 @@ const services = [
     icon: Home,
     title: "Home & Online Tutoring",
     description:
-      "From phonics and foundational maths to A-Level physics and literature, we offer tailored 1-on-1 and group classes in person and online.",
+      "From phonics and foundational maths to A-Level physics and literature, we offer tailored \"in-person\" and group classes in person and online.",
   },
   {
     icon: BookOpen,

@@ -76,20 +76,20 @@ export function Footer() {
               >
                 <Facebook className="h-5 w-5" />
               </a>
+              <a
+                href="https://www.instagram.com/brillianceaspire_tutoring?utm_source=qr&igsh=bG1ubnV4amgwcDRp"
+                className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
               {/* <a
                 href="#"
                 className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
               >
-                <Instagram className="h-5 w-5" />
+                <Twitter className="h-5 w-5" />
               </a> */}
               <a
-                href="#"
-                className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+                href="https://www.linkedin.com/in/alabi-catherine-oyinkansola-55675a300?utm_source=share_via&utm_content=profile&utm_medium=member_adroid"
                 className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-primary-foreground/20 transition-colors"
               >
                 <Linkedin className="h-5 w-5" />

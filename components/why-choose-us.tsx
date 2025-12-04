@@ -10,12 +10,12 @@ const benefits = [
   {
     icon: CreditCard,
     title: "Flexible Payment",
-    description: "Pay per session, weekly, monthly, or for groups—whatever suits your lifestyle and budget.",
+    description: "Pay per session, weekly, monthly, or for groups whatever suits your lifestyle and budget.",
   },
   {
     icon: Brain,
     title: "IEP Precision",
-    description: "Custom learning strategies backed by multiple intelligences and 21st-century pedagogy approaches.",
+    description: "Custom learning strategies backed by multiple intelligences and 21st-century pedagogical approaches.",
   },
   {
     icon: Globe,
@@ -31,7 +31,7 @@ const benefits = [
   {
     icon: TrendingUp,
     title: "Client Trust",
-    description: "Over 80% of our clients come through referrals—a testament to the impact we deliver consistently.",
+    description: "Over 80% of our clients come through referrals, a testament to the impact we deliver consistently.",
   },
 ]
 
